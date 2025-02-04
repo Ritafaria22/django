@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.home),
     path("firstapp/",include("firstapp.urls")),
+    path("secondapp/",include("secondapp.urls")),
     path('contact/', views.contact)
 ]
