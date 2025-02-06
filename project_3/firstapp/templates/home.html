@@ -1,0 +1,28 @@
+<html>
+ <h1>this is home page</h1>
+ <h2> author: {{author}}</h2>
+ <h2> age: {{age}}</h2>
+ <h2> {{list}}</h2>
+ 
+ {% comment %} conditional statement  {% endcomment %}
+ {% if age >= 20 %}
+    <h4> you are ready for marriage </h4>
+ {% elif age >= 10 and age <= 19 %}
+    <h4> you are not ready for marriage </h4>
+ {%else%}
+    <h4> you are a child </h4>
+{% endif %}
+
+{{list}}
+<h1>{{ list | join:" - " }} </h1>
+<h1>{{ birthday | date:"D d M Y" }}</h1>
+  <h1>{{"Python is Fun" | cut:" "}}</h1>
+  <h1> {{ val | length }} </h1>
+  <h1> {{ 'Happy coding. coding is fun.' | truncatechars:6}} </h1>
+
+{% comment %} for loop {% endcomment %}
+{% for i in courses %}
+<h3>{{i.id}} {{i.name}} {{i.fee}} </h3>
+{% endfor %}
+
+</html>
