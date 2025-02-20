@@ -5,7 +5,7 @@ from . import models
 
 def add_post(request):
     if request.method == 'POST':
-        post_form = forms.Postform(request.POST)#request mane form user fillup korse
+        post_form = forms.Postform(request.POST)#request mane user form  fillup korse
         if post_form.is_valid():
             post_form.save()
             return redirect('add_post')
