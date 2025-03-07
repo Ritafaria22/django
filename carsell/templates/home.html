@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+ 
+<div class="d-flex flex-wrap px-5 pt-3 align-items-center">
+    <div class="col-6">
+  <h1>welcome to our car showroom</h1>
+  <p>{% lorem  b random %}</p>
+    </div>
+
+    <div class="col-6">
+  <img src="{% static 'car.jpg' %}" />
+    </div>
+    
+</div>
+
+ 
+<div class="d-flex flex-wrap p-4">
+<div class="col-2 bg-white p-3">
+  <h5> All brands</h5>
+ 
+  {% for i in brand %}
+  <div class="form-check">
+        <input 
+        class="form-check-input" 
+        type="radio" 
+        name="brand" 
+        id="{{i.id}}"
+          />
+          <label class="form-check-label" for="{{ i.id }}">
+            <a href="{% url 'brandwise_car' i.slug %}" class="text-decoration-none text-dark">{{ i.name }}</a> 
+            
+        </label>
+      </div>
+    
+  {% endfor %}
+ 
+</div>
+
+<div class="col-10 p-1">
+   <h4>{{ data|length }} results found</h4>
+  <div class="d-flex flex-wrap pt-5">
+     {% for car in data %}
+
+     <div class="col-sm-3">
+        <div class="card mx-2">
+          <div class="card-body">
+            <p class="card-text">{{car.title  }}</p>
+            <img src="{{car.image.url}}" class="card-img-top" alt="...">
+
+            <h5 class="card-title"> <a href="{% url 'detail_car' car.id %} "class="text-decoration-none text-dark">{{car.title}}</a></h5>
+
+            <p class="card-text">{{car.description | truncatewords:10}}</p>
+ 
+             <p>Brand :    {{ car.brand.name }}   </p>
+             <p>Price: <strong>{{ car.price }} </strong></p>
+              <p>Quantity: <strong>{{ car.quantity }}</strong></p>
+              <a href="{% url 'detail_car' car.id %}" class="btn btn-secondary btn-sm">View Details</a>
+                 
+              
+    </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+</div>
+
+</div>
+ {% endblock %} 
+ 
+ 
+  

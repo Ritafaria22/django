@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container mt-5">
+  <h1>Your Profile</h1>
+  <h2>Purchased Cars</h2>
+  <div class="d-flex flex-wrap pt-5">
+      {% for purchase in purchases %}
+          <div class="col-sm-3">
+              <div class="card mx-2">
+                  <img src="{{ purchase.car.image.url }}" class="card-img-top" alt="{{ purchase.car.title }}">
+                  <div class="card-body">
+                    <h5 class="card-title"> 
+                      <a href="{% url 'detail_car' purchase.car.id %} "class="text-decoration-none text-dark">{{car.title}}</a></h5>
+                      <p class="card-text">{{ purchase.car.description | truncatewords:10 }}</p>
+                      <p>Brand: {{ purchase.car.brand }}</p>
+                      <p>Price: <strong>₹{{ purchase.car.price }}</strong></p>
+                      <p>Purchased on: <strong>{{ purchase.purchase_date }}</strong></p>
+                      
+                  </div>
+              </div>
+          </div>
+      {% empty %}
+          <div class="col-12">
+              <p>You have not purchased any cars yet.</p>
+          </div>
+      {% endfor %}
+  </div>
+</div>
+{% endblock %}
